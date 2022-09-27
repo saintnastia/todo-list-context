@@ -1,12 +1,12 @@
 import React from "react";
 
-import InputForm from "./components/InputForm";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   return(
       <div style={{width: "980px", margin: "0 auto", textAlign: "center"}}>
           <h1>Todos</h1>
-          <InputForm/>
+          <TodoList/>
       </div>
   )
 }

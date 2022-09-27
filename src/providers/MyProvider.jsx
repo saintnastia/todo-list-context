@@ -1,11 +1,9 @@
 import React, {useState} from "react";
+import MyContext from "./MyContext";
 
-import TodoItem from "./TodoItem";
-
-const InputForm = () => {
+const MyProvider = ({children}) => {
     const [todos, setTodos] = useState([]);
     const [value, setValue] = useState('');
-
     const onChange = (e) => {
         setValue(e.target.value);
     };
@@ -36,21 +34,11 @@ const InputForm = () => {
 
     }
 
-    return (
-        <>
-            <input type="text" value={value} onChange={onChange} onKeyDown={onKeyDown} />
+    return(
+        <MyContext.Provider value={{todos, value,  onChange, deleteTodo, toggleTodo, onKeyDown}}>
+            {children}
+        </MyContext.Provider>
+    )
+}
 
-            {todos.map((todo) => {
-                return(
-                    <div key={todo.id} className="mt-3 d-flex justify-content-between" style={{margin: "0 auto"}}>
-                        <TodoItem id={todo.id} title={todo.title} finish={todo.finish} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
-                    </div>
-
-                )}
-            )}
-        </>
-    );
-};
-
-export default InputForm;
-
+export default MyProvider;
